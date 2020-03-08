@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Contains module file.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function ui_examples_theme() {
+  return [
+    'ui_examples_overview_page' => [
+      'variables' => ['examples' => NULL],
+    ],
+  ];
+}

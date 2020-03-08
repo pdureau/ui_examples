@@ -1,0 +1,15 @@
+ui_examples.overview:
+  path: "/examples"
+  defaults:
+    _controller: '\Drupal\ui_examples\Controller\ExamplesLibraryController::overview'
+    _title: "Examples library"
+  requirements:
+    _access: "TRUE"
+
+ui_examples.single:
+  path: "/examples/{name}"
+  defaults:
+    _controller: '\Drupal\ui_examples\Controller\ExamplesLibraryController::single'
+    _title: "Example page"
+  requirements:
+    _access: "TRUE"

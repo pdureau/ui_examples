@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Examples page template, override this in your theme.
+ */
+#}
+
+{% if examples is not empty %}
+  {# List of available examples with anchor links. #}
+  {% for example in examples %}
+    <h2><a href="{{ url('ui_examples.single', {'name': example.id}) }}">{{ example.label }}</a></h2>
+    {% if example.description %}
+      <p>{{ example.description }}</p>
+    {% endif %}
+  {% endfor %}
+
+{% endif %}
+
+
+

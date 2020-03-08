@@ -1,0 +1,6 @@
+name: UI Example
+description: Define example pages from modules and themes,.
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: User interface
+type: module
