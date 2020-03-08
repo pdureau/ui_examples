@@ -58,4 +58,15 @@ class ExamplesLibraryController extends ControllerBase {
     return $example['render'];
   }
 
+  /**
+   * Render one example title.
+   *
+   * @return string
+   *   Example title.
+   */
+  public function title($name) {
+    $example = $this->examplesManager->getDefinition($name);
+    return $example['label'];
+  }
+
 }

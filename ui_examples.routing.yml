@@ -10,6 +10,6 @@ ui_examples.single:
   path: "/examples/{name}"
   defaults:
     _controller: '\Drupal\ui_examples\Controller\ExamplesLibraryController::single'
-    _title: "Example page"
+    _title_callback: '\Drupal\ui_examples\Controller\ExamplesLibraryController::title'
   requirements:
     _access: "TRUE"
