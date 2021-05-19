@@ -2,8 +2,10 @@
 
 /**
  * @file
- * Contains module file.
+ * Hook implementations for the UI Examples module.
  */
+
+declare(strict_types = 1);
 
 /**
  * Implements hook_theme().

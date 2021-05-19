@@ -3,7 +3,8 @@
 OVERVIEW
 ------------
 
-This module allows developers to provide example pages from modules or themes by defining render arrays in a YML files.
+This module allows developers to provide example pages from modules or themes by
+defining render arrays in a YML files.
 
 Examples library is located at `/examples`
 
@@ -28,7 +29,13 @@ Where:
 RECOMMENDED MODULES
 ------------
 
-[ui\_suite\_bootstrap](https://github.com/pdureau/ui_suite_bootstrap) is an example of a site-building friendly Drupal theme using [UI Examples](https://www.drupal.org/project/ui_examples)  with [UI Patterns](https://www.drupal.org/project/ui_patterns), [Layout Options](https://www.drupal.org/project/layout_options) and [UI Styles](https://www.drupal.org/project/ui_styles) modules, to implements [Bootstrap](https://getbootstrap.com/) 4:
+[ui\_suite\_bootstrap](https://github.com/pdureau/ui_suite_bootstrap) is an
+example of a site-building friendly Drupal theme using
+[UI Examples](https://www.drupal.org/project/ui_examples)
+with [UI Patterns](https://www.drupal.org/project/ui_patterns),
+[Layout Options](https://www.drupal.org/project/layout_options) and
+[UI Styles](https://www.drupal.org/project/ui_styles) modules, to implements
+[Bootstrap](https://getbootstrap.com/) 4:
 
 ![Overview](doc/schema.png)
 

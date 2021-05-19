@@ -1,4 +1,7 @@
 services:
   plugin.manager.ui_examples:
     class: Drupal\ui_examples\ExamplePluginManager
-    arguments: ["@module_handler", "@theme_handler", "@cache.discovery"]
+    arguments:
+      - '@module_handler'
+      - '@theme_handler'
+      - '@cache.discovery'

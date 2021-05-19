@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\ui_examples;
 
 use Drupal\Component\Plugin\Exception\PluginException;
@@ -9,14 +11,11 @@ use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\Plugin\DefaultPluginManager;
 use Drupal\Core\Plugin\Discovery\ContainerDerivativeDiscoveryDecorator;
 use Drupal\Core\Plugin\Discovery\YamlDiscovery;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Provides the default style_plugin manager.
  */
 class ExamplePluginManager extends DefaultPluginManager implements ExamplePluginManagerInterface {
-
-  use StringTranslationTrait;
 
   /**
    * The theme handler.
@@ -39,7 +38,7 @@ class ExamplePluginManager extends DefaultPluginManager implements ExamplePlugin
   ];
 
   /**
-   * Constructs a new StylePluginManager object.
+   * Constructor.
    *
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    *   The module handler.
@@ -48,9 +47,14 @@ class ExamplePluginManager extends DefaultPluginManager implements ExamplePlugin
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache_backend
    *   Cache backend instance to use.
    */
-  public function __construct(ModuleHandlerInterface $module_handler, ThemeHandlerInterface $theme_handler, CacheBackendInterface $cache_backend) {
+  public function __construct(
+    ModuleHandlerInterface $module_handler,
+    ThemeHandlerInterface $theme_handler,
+    CacheBackendInterface $cache_backend
+  ) {
     $this->moduleHandler = $module_handler;
     $this->themeHandler = $theme_handler;
+    $this->alterInfo('ui_examples_examples');
     $this->setCacheBackend($cache_backend, 'ui_examples', ['ui_examples']);
   }
 
@@ -68,10 +72,12 @@ class ExamplePluginManager extends DefaultPluginManager implements ExamplePlugin
 
   /**
    * {@inheritdoc}
+   *
+   * @phpstan-ignore-next-line
    */
-  public function processDefinition(&$definition, $plugin_id) {
+  public function processDefinition(&$definition, $plugin_id) : void {
     parent::processDefinition($definition, $plugin_id);
-    // TODO: Add validation of the plugin definition here.
+    // @todo Add validation of the plugin definition here.
     if (empty($definition['id'])) {
       throw new PluginException(sprintf('Example plugin property (%s) definition "is" is required.', $plugin_id));
     }
@@ -79,8 +85,10 @@ class ExamplePluginManager extends DefaultPluginManager implements ExamplePlugin
 
   /**
    * {@inheritdoc}
+   *
+   * @phpstan-ignore-next-line
    */
-  protected function providerExists($provider) {
+  protected function providerExists($provider) : bool {
     return $this->moduleHandler->moduleExists($provider) || $this->themeHandler->themeExists($provider);
   }
 

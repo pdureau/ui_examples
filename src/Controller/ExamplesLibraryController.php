@@ -1,15 +1,15 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\ui_examples\Controller;
 
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\ui_examples\ExamplePluginManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class ExamplesLibraryController.
- *
- * @package Drupal\ui_examples\Controller
+ * Controller to display the examples library.
  */
 class ExamplesLibraryController extends ControllerBase {
 
@@ -23,15 +23,10 @@ class ExamplesLibraryController extends ControllerBase {
   /**
    * {@inheritdoc}
    */
-  final public function __construct(ExamplePluginManagerInterface $examples_manager) {
-    $this->examplesManager = $examples_manager;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static($container->get('plugin.manager.ui_examples'));
+  public static function create(ContainerInterface $container) : self {
+    $instance = parent::create($container);
+    $instance->examplesManager = $container->get('plugin.manager.ui_examples');
+    return $instance;
   }
 
   /**
@@ -40,7 +35,7 @@ class ExamplesLibraryController extends ControllerBase {
    * @return array
    *   Examples overview page render array.
    */
-  public function overview() {
+  public function overview() : array {
     return [
       '#theme' => 'ui_examples_overview_page',
       '#examples' => $this->examplesManager->getDefinitions(),
@@ -50,10 +45,13 @@ class ExamplesLibraryController extends ControllerBase {
   /**
    * Render one example page.
    *
+   * @param string $name
+   *   The ID of the example plugin.
+   *
    * @return array
    *   Style page render array.
    */
-  public function single($name) {
+  public function single(string $name) : array {
     $example = $this->examplesManager->getDefinition($name);
     return $example['render'];
   }
@@ -61,10 +59,13 @@ class ExamplesLibraryController extends ControllerBase {
   /**
    * Render one example title.
    *
-   * @return string
+   * @param string $name
+   *   The ID of the example plugin.
+   *
+   * @return \Drupal\Component\Render\MarkupInterface
    *   Example title.
    */
-  public function title($name) {
+  public function title(string $name) : MarkupInterface {
     $example = $this->examplesManager->getDefinition($name);
     return $example['label'];
   }
