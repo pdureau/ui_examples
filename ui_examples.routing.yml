@@ -4,6 +4,7 @@ ui_examples.overview:
     _controller: '\Drupal\ui_examples\Controller\ExamplesLibraryController::overview'
     _title: 'Examples library'
   requirements:
+    # Currently no need to filter access on the example pages.
     _access: 'TRUE'
 
 ui_examples.single:
@@ -12,4 +13,5 @@ ui_examples.single:
     _controller: '\Drupal\ui_examples\Controller\ExamplesLibraryController::single'
     _title_callback: '\Drupal\ui_examples\Controller\ExamplesLibraryController::title'
   requirements:
+    # Currently no need to filter access on the example pages.
     _access: 'TRUE'

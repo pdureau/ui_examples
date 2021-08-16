@@ -1,7 +1,11 @@
 {
-  "name": "drupal/ui_examples",
-  "description": "UI Examples",
-  "keywords": ["drupal", "web", "ui"],
-  "type": "drupal-module",
-  "license": "GPL-2.0-or-later"
+    "name": "drupal/ui_examples",
+    "type": "drupal-module",
+    "description": "UI Examples",
+    "keywords": [
+        "drupal",
+        "web",
+        "ui"
+    ],
+    "license": "GPL-2.0-or-later"
 }
