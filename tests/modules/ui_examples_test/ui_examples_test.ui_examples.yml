@@ -1,0 +1,9 @@
+test:
+  enabled: true
+  label: 'Test'
+  description: 'Test plugin.'
+  render:
+    -
+      '#type': html_tag
+      '#tag': h1
+      '#value': 'Test'

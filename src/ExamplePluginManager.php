@@ -13,7 +13,7 @@ use Drupal\Core\Plugin\Discovery\ContainerDerivativeDiscoveryDecorator;
 use Drupal\Core\Plugin\Discovery\YamlDiscovery;
 
 /**
- * Provides the default style_plugin manager.
+ * Provides the default example manager.
  */
 class ExamplePluginManager extends DefaultPluginManager implements ExamplePluginManagerInterface {
 
@@ -32,6 +32,7 @@ class ExamplePluginManager extends DefaultPluginManager implements ExamplePlugin
   protected $defaults = [
     // Add required and optional plugin properties.
     'id' => '',
+    'enabled' => TRUE,
     'label' => '',
     'description' => '',
     'render' => [],
@@ -80,8 +81,24 @@ class ExamplePluginManager extends DefaultPluginManager implements ExamplePlugin
     parent::processDefinition($definition, $plugin_id);
     // @todo Add validation of the plugin definition here.
     if (empty($definition['id'])) {
-      throw new PluginException(sprintf('Example plugin property (%s) definition "is" is required.', $plugin_id));
+      throw new PluginException(sprintf('Example plugin property (%s) definition "id" is required.', $plugin_id));
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @phpstan-ignore-next-line
+   */
+  protected function alterDefinitions(&$definitions) {
+    foreach ($definitions as $definition_key => $definition_info) {
+      if (isset($definition_info['enabled']) && !$definition_info['enabled']) {
+        unset($definitions[$definition_key]);
+        continue;
+      }
+    }
+
+    parent::alterDefinitions($definitions);
   }
 
   /**
