@@ -1,7 +1,7 @@
 {
     "name": "drupal/ui_examples",
     "type": "drupal-module",
-    "description": "UI Examples",
+    "description": "Define example pages from modules and themes.",
     "keywords": [
         "drupal",
         "web",
