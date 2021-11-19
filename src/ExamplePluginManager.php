@@ -63,12 +63,10 @@ class ExamplePluginManager extends DefaultPluginManager implements ExamplePlugin
    * {@inheritdoc}
    */
   protected function getDiscovery() {
-    if (!isset($this->discovery)) {
-      $this->discovery = new YamlDiscovery('ui_examples', $this->moduleHandler->getModuleDirectories() + $this->themeHandler->getThemeDirectories());
-      $this->discovery->addTranslatableProperty('label', 'label_context');
-      $this->discovery->addTranslatableProperty('description', 'description_context');
-      $this->discovery = new ContainerDerivativeDiscoveryDecorator($this->discovery);
-    }
+    $this->discovery = new YamlDiscovery('ui_examples', $this->moduleHandler->getModuleDirectories() + $this->themeHandler->getThemeDirectories());
+    $this->discovery->addTranslatableProperty('label', 'label_context');
+    $this->discovery->addTranslatableProperty('description', 'description_context');
+    $this->discovery = new ContainerDerivativeDiscoveryDecorator($this->discovery);
     return $this->discovery;
   }
 

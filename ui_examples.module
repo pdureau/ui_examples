@@ -10,7 +10,7 @@ declare(strict_types = 1);
 /**
  * Implements hook_theme().
  */
-function ui_examples_theme() {
+function ui_examples_theme() : array {
   return [
     'ui_examples_overview_page' => [
       'variables' => ['examples' => NULL],

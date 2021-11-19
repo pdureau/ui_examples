@@ -52,6 +52,7 @@ class ExamplesLibraryController extends ControllerBase {
    *   Style page render array.
    */
   public function single(string $name) : array {
+    /** @var array $example */
     $example = $this->examplesManager->getDefinition($name);
     return $example['render'];
   }
@@ -66,6 +67,7 @@ class ExamplesLibraryController extends ControllerBase {
    *   Example title.
    */
   public function title(string $name) : MarkupInterface {
+    /** @var array $example */
     $example = $this->examplesManager->getDefinition($name);
     return $example['label'];
   }
