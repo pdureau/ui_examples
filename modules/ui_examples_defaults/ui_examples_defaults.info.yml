@@ -1,4 +1,4 @@
-name: 'UI Example Defaults'
+name: 'UI Examples Defaults'
 type: module
 description: 'Provide some defaults examples for standard Drupal elements.'
 core_version_requirement: ^8.8 || ^9

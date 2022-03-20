@@ -1,11 +1,11 @@
 {
     "name": "drupal/ui_examples",
-    "type": "drupal-module",
     "description": "Define example pages from modules and themes.",
+    "license": "GPL-2.0-or-later",
+    "type": "drupal-module",
     "keywords": [
         "drupal",
         "web",
         "ui"
-    ],
-    "license": "GPL-2.0-or-later"
+    ]
 }

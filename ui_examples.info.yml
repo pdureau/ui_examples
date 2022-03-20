@@ -1,4 +1,4 @@
-name: 'UI Example'
+name: 'UI Examples'
 type: module
 description: 'Define example pages from modules and themes.'
 core_version_requirement: ^8.8 || ^9
