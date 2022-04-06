@@ -1,4 +1,4 @@
 name: 'UI Examples Test'
-description: 'Provides test plugin.'
 type: module
+description: 'Provides test plugin.'
 package: 'Testing'

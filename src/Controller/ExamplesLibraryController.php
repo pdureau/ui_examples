@@ -23,7 +23,7 @@ class ExamplesLibraryController extends ControllerBase {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) : self {
+  public static function create(ContainerInterface $container): self {
     $instance = parent::create($container);
     $instance->examplesManager = $container->get('plugin.manager.ui_examples');
     return $instance;
@@ -35,7 +35,7 @@ class ExamplesLibraryController extends ControllerBase {
    * @return array
    *   Examples overview page render array.
    */
-  public function overview() : array {
+  public function overview(): array {
     return [
       '#theme' => 'ui_examples_overview_page',
       '#examples' => $this->examplesManager->getDefinitions(),
@@ -51,7 +51,7 @@ class ExamplesLibraryController extends ControllerBase {
    * @return array
    *   Style page render array.
    */
-  public function single(string $name) : array {
+  public function single(string $name): array {
     /** @var array $example */
     $example = $this->examplesManager->getDefinition($name);
     return $example['render'];
@@ -66,7 +66,7 @@ class ExamplesLibraryController extends ControllerBase {
    * @return \Drupal\Component\Render\MarkupInterface
    *   Example title.
    */
-  public function title(string $name) : MarkupInterface {
+  public function title(string $name): MarkupInterface {
     /** @var array $example */
     $example = $this->examplesManager->getDefinition($name);
     return $example['label'];

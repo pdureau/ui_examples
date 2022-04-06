@@ -26,12 +26,13 @@ class PluginTest extends KernelTestBase {
   /**
    * Tests that examples can be provided by YAML files.
    */
-  public function testDetectedExamples() {
+  public function testDetectedExamples(): void {
     /** @var \Drupal\ui_examples\ExamplePluginManagerInterface $examples_manager */
     $examples_manager = $this->container->get('plugin.manager.ui_examples');
+    /** @var array $definitions */
     $definitions = $examples_manager->getDefinitions();
 
-    $this->assertEquals(1, count($definitions), 'There is one example detected.');
+    $this->assertEquals(1, \count($definitions), 'There is one example detected.');
 
     $expectations = [
       'test' => [
@@ -52,18 +53,18 @@ class PluginTest extends KernelTestBase {
   /**
    * Test that it is possible to override an already declared example.
    */
-  public function testOverridingDefinition() {
+  public function testOverridingDefinition(): void {
     $this->enableModules(['ui_examples_test_disabled']);
 
     // Test when the module overriding the definition is executed before.
-    module_set_weight('ui_examples_test_disabled', -1);
+    \module_set_weight('ui_examples_test_disabled', -1);
     /** @var \Drupal\ui_examples\ExamplePluginManagerInterface $examples_manager */
     $examples_manager = $this->container->get('plugin.manager.ui_examples');
     $this->assertArrayHasKey('test', $examples_manager->getDefinitions());
 
     // Test when the module overriding the definition is executed after.
-    module_set_weight('ui_examples_test_disabled', 1);
-    drupal_flush_all_caches();
+    \module_set_weight('ui_examples_test_disabled', 1);
+    \drupal_flush_all_caches();
     /** @var \Drupal\ui_examples\ExamplePluginManagerInterface $examples_manager */
     $examples_manager = $this->container->get('plugin.manager.ui_examples');
     $this->assertArrayNotHasKey('test', $examples_manager->getDefinitions());

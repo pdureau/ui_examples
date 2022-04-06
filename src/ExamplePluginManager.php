@@ -75,11 +75,11 @@ class ExamplePluginManager extends DefaultPluginManager implements ExamplePlugin
    *
    * @phpstan-ignore-next-line
    */
-  public function processDefinition(&$definition, $plugin_id) : void {
+  public function processDefinition(&$definition, $plugin_id): void {
     parent::processDefinition($definition, $plugin_id);
     // @todo Add validation of the plugin definition here.
     if (empty($definition['id'])) {
-      throw new PluginException(sprintf('Example plugin property (%s) definition "id" is required.', $plugin_id));
+      throw new PluginException(\sprintf('Example plugin property (%s) definition "id" is required.', $plugin_id));
     }
   }
 
@@ -104,7 +104,7 @@ class ExamplePluginManager extends DefaultPluginManager implements ExamplePlugin
    *
    * @phpstan-ignore-next-line
    */
-  protected function providerExists($provider) : bool {
+  protected function providerExists($provider): bool {
     return $this->moduleHandler->moduleExists($provider) || $this->themeHandler->themeExists($provider);
   }
 

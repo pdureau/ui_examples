@@ -1,4 +1,4 @@
 name: 'UI Examples Test Disabled'
-description: 'Disables test plugin.'
 type: module
+description: 'Disables test plugin.'
 package: 'Testing'
