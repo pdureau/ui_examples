@@ -43,9 +43,9 @@ class PluginTest extends KernelTestBase {
         'enabled' => TRUE,
       ],
     ];
-    foreach ($expectations as $example_id => $expected_example_structure) {
-      foreach ($expected_example_structure as $key => $value) {
-        $this->assertEquals($value, $definitions[$example_id][$key]);
+    foreach ($expectations as $plugin_id => $expected_plugin_structure) {
+      foreach ($expected_plugin_structure as $key => $value) {
+        $this->assertEquals($value, $definitions[$plugin_id][$key]);
       }
     }
   }

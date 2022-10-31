@@ -33,7 +33,7 @@ album:
 
 See the test modules for a complete example.
 
-## RECOMMENDED MODULES
+## Recommended Modules
 
 [UI Suite Bootstrap](https://github.com/pdureau/ui_suite_bootstrap) is an
 example of a site-building friendly Drupal theme using
@@ -45,23 +45,19 @@ example of a site-building friendly Drupal theme using
 
 ![Overview](doc/schema.png)
 
-
-## INSTALLATION
+## Installation
 
 Install and enable this module like any other Drupal module.
 
-
-## CONFIGURATION
+## Configuration
 
 The module has no modifiable settings.
 
-
-MAINTAINERS
------------
+## Maintainers
 
 Current maintainers:
-* Pierre Dureau (pdureau) - https://www.drupal.org/user/1903334
-* Florent Torregrosa (Grimreaper) - https://www.drupal.org/user/2388214
+* [Pierre Dureau (pdureau)](https://www.drupal.org/user/1903334)
+* [Florent Torregrosa (Grimreaper)](https://www.drupal.org/user/2388214)
 
 This project has been sponsored by:
-* Smile - http://www.smile.fr
+* [Smile](https://https://www.smile.eu)
