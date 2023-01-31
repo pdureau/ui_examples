@@ -1,0 +1,310 @@
+id: 'normalize'
+enabled: true
+label: 'Normalize'
+description: 'Provides standard HTML elements.'
+render:
+  -
+    '#type': html_tag
+    '#tag': h1
+    '#value': 'H1 title'
+  -
+    '#type': html_tag
+    '#tag': h2
+    '#value': 'H2 title'
+  -
+    '#type': html_tag
+    '#tag': h3
+    '#value': 'H3 title'
+  -
+    '#type': html_tag
+    '#tag': h4
+    '#value': 'H4 title'
+  -
+    '#type': html_tag
+    '#tag': h5
+    '#value': 'H5 title'
+  -
+    '#type': html_tag
+    '#tag': h6
+    '#value': 'H6 title'
+  -
+    '#type': html_tag
+    '#tag': hr
+  -
+    '#type': html_tag
+    '#tag': p
+    '#value': 'Paragraph: Lorem Ipsum'
+  -
+    '#type': html_tag
+    '#tag': p
+    '#value': 'Bold: '
+    0:
+      -
+        '#type': html_tag
+        '#tag': strong
+        '#value': 'Lorem Ipsum'
+  -
+    '#type': html_tag
+    '#tag': p
+    '#value': 'Italic: '
+    0:
+      -
+        '#type': html_tag
+        '#tag': em
+        '#value': 'Lorem Ipsum'
+  -
+    '#type': html_tag
+    '#tag': p
+    '#value': 'Strikethrough: '
+    0:
+      -
+        '#type': html_tag
+        '#tag': s
+        '#value': 'Lorem Ipsum'
+  -
+    '#type': html_tag
+    '#tag': p
+    '#value': 'Underline: '
+    0:
+      -
+        '#type': html_tag
+        '#tag': u
+        '#value': 'Lorem Ipsum'
+  -
+    '#type': html_tag
+    '#tag': p
+    '#value': 'Superscript: '
+    0:
+      -
+        '#type': html_tag
+        '#tag': sup
+        '#value': 'Lorem Ipsum'
+  -
+    '#type': html_tag
+    '#tag': p
+    '#value': 'Subscript: '
+    0:
+      -
+        '#type': html_tag
+        '#tag': sub
+        '#value': 'Lorem Ipsum'
+  -
+    '#type': html_tag
+    '#tag': hr
+  -
+    '#type': html_tag
+    '#tag': p
+    '#value': 'External link: '
+    0:
+      -
+        '#type': html_tag
+        '#tag': a
+        '#value': 'Example.com'
+        '#attributes':
+          'href': 'https://example.com'
+  -
+    '#type': html_tag
+    '#tag': p
+    '#value': 'Internal link: '
+    0:
+      -
+        '#type': html_tag
+        '#tag': a
+        '#value': 'Examples page'
+        '#attributes':
+          'href': '/examples'
+  -
+    '#type': html_tag
+    '#tag': p
+    '#value': 'Mailto link: '
+    0:
+      -
+        '#type': html_tag
+        '#tag': a
+        '#value': 'Mail'
+        '#attributes':
+          'href': 'mailto:example@example.com'
+  -
+    '#type': html_tag
+    '#tag': hr
+  -
+    '#type': html_tag
+    '#tag': ul
+    0:
+      -
+        '#type': html_tag
+        '#tag': li
+        '#value': 'Unordered list'
+    1:
+      -
+        '#type': html_tag
+        '#tag': li
+        '#value': 'Lorem Ipsum'
+    2:
+      -
+        '#type': html_tag
+        '#tag': li
+        '#value': 'Lorem Ipsum'
+        0:
+          -
+            '#type': html_tag
+            '#tag': ul
+            0:
+              -
+                '#type': html_tag
+                '#tag': li
+                '#value': 'Lorem Ipsum'
+            1:
+              -
+                '#type': html_tag
+                '#tag': li
+                '#value': 'Lorem Ipsum'
+    3:
+      -
+        '#type': html_tag
+        '#tag': li
+        '#value': 'Lorem Ipsum'
+  -
+    '#type': html_tag
+    '#tag': hr
+  -
+    '#type': html_tag
+    '#tag': ol
+    0:
+      -
+        '#type': html_tag
+        '#tag': li
+        '#value': 'Ordered list'
+    1:
+      -
+        '#type': html_tag
+        '#tag': li
+        '#value': 'Lorem Ipsum'
+    2:
+      -
+        '#type': html_tag
+        '#tag': li
+        '#value': 'Lorem Ipsum'
+        0:
+          -
+            '#type': html_tag
+            '#tag': ol
+            0:
+              -
+                '#type': html_tag
+                '#tag': li
+                '#value': 'Lorem Ipsum'
+            1:
+              -
+                '#type': html_tag
+                '#tag': li
+                '#value': 'Lorem Ipsum'
+    3:
+      -
+        '#type': html_tag
+        '#tag': li
+        '#value': 'Lorem Ipsum'
+  -
+    '#type': html_tag
+    '#tag': hr
+  -
+    '#type': html_tag
+    '#tag': blockquote
+    0:
+      -
+        '#type': html_tag
+        '#tag': p
+        '#value': 'Blockquote: Lorem Ipsum'
+  -
+    '#type': html_tag
+    '#tag': pre
+    '#value': 'Formatted: Lorem Ipsum'
+  -
+    '#type': html_tag
+    '#tag': hr
+  -
+    '#type': html_tag
+    '#tag': p
+    '#value': 'Paragraph align left: Lorem Ipsum'
+  -
+    '#type': html_tag
+    '#tag': p
+    '#value': 'Paragraph align center: Lorem Ipsum'
+    '#attributes':
+      'class':
+        - 'text-align-center'
+  -
+    '#type': html_tag
+    '#tag': p
+    '#value': 'Paragraph align right: Lorem Ipsum'
+    '#attributes':
+      'class':
+        - 'text-align-right'
+  -
+    '#type': html_tag
+    '#tag': p
+    '#value': 'Paragraph align justify: Lorem Ipsum'
+    '#attributes':
+      'class':
+        - 'text-align-justify'
+  -
+    '#type': html_tag
+    '#tag': hr
+  -
+    '#type': html_tag
+    '#tag': table
+    '#attributes':
+      'summary': 'Summary'
+    0:
+      -
+        '#type': html_tag
+        '#tag': caption
+        '#value': 'Caption'
+    1:
+      -
+        '#type': html_tag
+        '#tag': thead
+        0:
+          -
+            '#type': html_tag
+            '#tag': tr
+            0:
+              - '#type': html_tag
+                '#tag': th
+                '#attributes':
+                  'scope': 'col'
+                '#value': 'Lorem Ipsum'
+            1:
+              - '#type': html_tag
+                '#tag': th
+                '#attributes':
+                  'scope': 'col'
+                '#value': 'Lorem Ipsum'
+    2:
+      -
+        '#type': html_tag
+        '#tag': tbody
+        0:
+          -
+            '#type': html_tag
+            '#tag': tr
+            0:
+              - '#type': html_tag
+                '#tag': td
+                '#value': 'Lorem Ipsum'
+            1:
+              - '#type': html_tag
+                '#tag': td
+                '#value': 'Lorem Ipsum'
+        1:
+          -
+            '#type': html_tag
+            '#tag': tr
+            0:
+              - '#type': html_tag
+                '#tag': td
+                '#value': 'Lorem Ipsum'
+            1:
+              - '#type': html_tag
+                '#tag': td
+                '#value': 'Lorem Ipsum'

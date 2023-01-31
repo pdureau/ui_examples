@@ -1,0 +1,41 @@
+id: 'status_messages'
+enabled: true
+label: 'Status messages'
+description: 'Standard Drupal status messages.'
+render:
+  -
+    '#theme': status_messages
+    '#message_list':
+      'error':
+        - 'Error message:'
+        -
+          '#markup': 'With link: '
+          0:
+            -
+              '#type': html_tag
+              '#tag': a
+              '#value': 'Examples page'
+              '#attributes':
+                'href': '/examples'
+      'warning':
+        - 'Warning message:'
+        -
+          '#markup': 'With link: '
+          0:
+            -
+              '#type': html_tag
+              '#tag': a
+              '#value': 'Examples page'
+              '#attributes':
+                'href': '/examples'
+      'status':
+        - 'Status message:'
+        -
+          '#markup': 'With link: '
+          0:
+            -
+              '#type': html_tag
+              '#tag': a
+              '#value': 'Examples page'
+              '#attributes':
+                'href': '/examples'

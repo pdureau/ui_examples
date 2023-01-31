@@ -44,8 +44,9 @@ class PluginTest extends KernelTestBase {
       ],
     ];
     foreach ($expectations as $plugin_id => $expected_plugin_structure) {
+      $definition_as_array = $definitions[$plugin_id]->toArray();
       foreach ($expected_plugin_structure as $key => $value) {
-        $this->assertEquals($value, $definitions[$plugin_id][$key]);
+        $this->assertEquals($value, $definition_as_array[$key]);
       }
     }
   }

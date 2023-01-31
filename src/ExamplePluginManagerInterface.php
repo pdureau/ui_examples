@@ -11,4 +11,22 @@ use Drupal\Component\Plugin\PluginManagerInterface;
  */
 interface ExamplePluginManagerInterface extends PluginManagerInterface {
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return \Drupal\ui_examples\Definition\ExampleDefinition|null
+   *   The plugin definition. NULL if not found.
+   *
+   * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+   */
+  public function getDefinition($plugin_id, $exception_on_invalid = TRUE);
+
+  /**
+   * {@inheritdoc}
+   *
+   * @return \Drupal\ui_examples\Definition\ExampleDefinition[]
+   *   The plugins definitions.
+   */
+  public function getDefinitions();
+
 }

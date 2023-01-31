@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\ui_examples\Controller;
 
-use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -52,9 +52,9 @@ class ExamplesLibraryController extends ControllerBase {
    *   Style page render array.
    */
   public function single(string $name): array {
-    /** @var array $example */
+    /** @var \Drupal\ui_examples\Definition\ExampleDefinition $example */
     $example = $this->examplesManager->getDefinition($name);
-    return $example['render'];
+    return $example->getRender();
   }
 
   /**
@@ -63,13 +63,13 @@ class ExamplesLibraryController extends ControllerBase {
    * @param string $name
    *   The ID of the example plugin.
    *
-   * @return \Drupal\Component\Render\MarkupInterface
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup|string
    *   Example title.
    */
-  public function title(string $name): MarkupInterface {
-    /** @var array $example */
+  public function title(string $name): TranslatableMarkup|string {
+    /** @var \Drupal\ui_examples\Definition\ExampleDefinition $example */
     $example = $this->examplesManager->getDefinition($name);
-    return $example['label'];
+    return $example->getLabel();
   }
 
 }

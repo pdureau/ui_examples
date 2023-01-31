@@ -10,10 +10,15 @@ use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\Plugin\DefaultPluginManager;
 use Drupal\Core\Plugin\Discovery\ContainerDerivativeDiscoveryDecorator;
-use Drupal\Core\Plugin\Discovery\YamlDiscovery;
+use Drupal\Core\Plugin\Discovery\YamlDirectoryDiscovery;
+use Drupal\Core\Plugin\Discovery\YamlDiscoveryDecorator;
+use Drupal\ui_examples\Definition\ExampleDefinition;
 
 /**
  * Provides the default example manager.
+ *
+ * @method \Drupal\ui_examples\Definition\ExampleDefinition|null getDefinition($plugin_id, $exception_on_invalid = TRUE)
+ * @method \Drupal\ui_examples\Definition\ExampleDefinition[] getDefinitions()
  */
 class ExamplePluginManager extends DefaultPluginManager implements ExamplePluginManagerInterface {
 
@@ -22,7 +27,7 @@ class ExamplePluginManager extends DefaultPluginManager implements ExamplePlugin
    *
    * @var \Drupal\Core\Extension\ThemeHandlerInterface
    */
-  protected $themeHandler;
+  protected ThemeHandlerInterface $themeHandler;
 
   /**
    * Provides default values for all style_plugin plugins.
@@ -36,37 +41,52 @@ class ExamplePluginManager extends DefaultPluginManager implements ExamplePlugin
     'label' => '',
     'description' => '',
     'render' => [],
+    'weight' => 0,
+    'additional' => [],
+    'provider' => '',
   ];
 
   /**
    * Constructor.
    *
+   * @param \Drupal\Core\Cache\CacheBackendInterface $cache_backend
+   *   Cache backend instance to use.
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    *   The module handler.
    * @param \Drupal\Core\Extension\ThemeHandlerInterface $theme_handler
    *   The theme handler.
-   * @param \Drupal\Core\Cache\CacheBackendInterface $cache_backend
-   *   Cache backend instance to use.
    */
   public function __construct(
+    CacheBackendInterface $cache_backend,
     ModuleHandlerInterface $module_handler,
-    ThemeHandlerInterface $theme_handler,
-    CacheBackendInterface $cache_backend
+    ThemeHandlerInterface $theme_handler
   ) {
+    $this->setCacheBackend($cache_backend, 'ui_examples', ['ui_examples']);
+    $this->alterInfo('ui_examples_examples');
     $this->moduleHandler = $module_handler;
     $this->themeHandler = $theme_handler;
-    $this->alterInfo('ui_examples_examples');
-    $this->setCacheBackend($cache_backend, 'ui_examples', ['ui_examples']);
   }
 
   /**
    * {@inheritdoc}
    */
   protected function getDiscovery() {
-    $this->discovery = new YamlDiscovery('ui_examples', $this->moduleHandler->getModuleDirectories() + $this->themeHandler->getThemeDirectories());
-    $this->discovery->addTranslatableProperty('label', 'label_context');
-    $this->discovery->addTranslatableProperty('description', 'description_context');
+    // Search in ui_examples folder in modules and themes.
+    $directories = \array_map(static function ($directory) {
+      return [$directory . '/ui_examples'];
+    }, $this->moduleHandler->getModuleDirectories() + $this->themeHandler->getThemeDirectories());
+    $this->discovery = new YamlDirectoryDiscovery($directories, 'ui_examples');
+    $this->discovery
+      ->addTranslatableProperty('label', 'label_context')
+      ->addTranslatableProperty('description', 'description_context');
+
+    // Search ui_examples.yml files at the root of modules and themes.
+    $this->discovery = new YamlDiscoveryDecorator($this->discovery, 'ui_examples', $this->moduleHandler->getModuleDirectories() + $this->themeHandler->getThemeDirectories());
+    $this->discovery
+      ->addTranslatableProperty('label', 'label_context')
+      ->addTranslatableProperty('description', 'description_context');
     $this->discovery = new ContainerDerivativeDiscoveryDecorator($this->discovery);
+
     return $this->discovery;
   }
 
@@ -75,12 +95,15 @@ class ExamplePluginManager extends DefaultPluginManager implements ExamplePlugin
    *
    * @phpstan-ignore-next-line
    */
-  public function processDefinition(&$definition, $plugin_id): void {
-    parent::processDefinition($definition, $plugin_id);
-    // @todo Add validation of the plugin definition here.
-    if (empty($definition['id'])) {
-      throw new PluginException(\sprintf('Example plugin property (%s) definition "id" is required.', $plugin_id));
+  protected function alterDefinitions(&$definitions) {
+    /** @var \Drupal\ui_examples\Definition\ExampleDefinition[] $definitions */
+    foreach ($definitions as $definition_key => $definition) {
+      if (!$definition->isEnabled()) {
+        unset($definitions[$definition_key]);
+      }
     }
+
+    parent::alterDefinitions($definitions);
   }
 
   /**
@@ -88,15 +111,17 @@ class ExamplePluginManager extends DefaultPluginManager implements ExamplePlugin
    *
    * @phpstan-ignore-next-line
    */
-  protected function alterDefinitions(&$definitions) {
-    foreach ($definitions as $definition_key => $definition_info) {
-      if (isset($definition_info['enabled']) && !$definition_info['enabled']) {
-        unset($definitions[$definition_key]);
-        continue;
-      }
+  public function processDefinition(&$definition, $plugin_id): void {
+    // Call parent first to set defaults while still manipulating an array.
+    // Otherwise, as there is currently no derivative system among CSS variable
+    // plugins, there is no deriver or class attributes.
+    parent::processDefinition($definition, $plugin_id);
+
+    if (empty($definition['id'])) {
+      throw new PluginException(\sprintf('Example plugin property (%s) definition "id" is required.', $plugin_id));
     }
 
-    parent::alterDefinitions($definitions);
+    $definition = new ExampleDefinition($definition);
   }
 
   /**
