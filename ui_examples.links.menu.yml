@@ -1,5 +1,11 @@
+ui_suite.index:
+  title: 'UI libraries'
+  description: 'Design system libraries.'
+  route_name: ui_suite.index
+  parent: system.themes_page
+
 ui_examples.overview:
-  title: 'UI Examples library'
-  description: 'See a list of UI Examples which exist on the site.'
-  parent: system.admin_reports
+  title: 'Examples'
+  description: 'See a list of examples which exist on the site.'
   route_name: ui_examples.overview
+  parent: ui_suite.index
