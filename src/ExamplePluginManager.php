@@ -128,7 +128,7 @@ class ExamplePluginManager extends DefaultPluginManager implements ExamplePlugin
     $links = \array_map(static function ($link) {
       if (\is_array($link) && !$link['title'] instanceof TranslatableMarkup) {
         // phpcs:ignore Drupal.Semantics.FunctionT.NotLiteralString
-        $link['title'] = new TranslatableMarkup($link['title'], [], ['context' => 'ui_styles']);
+        $link['title'] = new TranslatableMarkup($link['title'], [], ['context' => 'ui_examples']);
       }
       return $link;
     }, $definition->getLinks());
