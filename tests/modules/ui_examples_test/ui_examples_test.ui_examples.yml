@@ -2,6 +2,10 @@ test:
   enabled: true
   label: 'Test'
   description: 'Test plugin.'
+  links:
+    - 'https://test.com'
+    - url: 'https://example.com'
+      title: 'Example'
   render:
     -
       '#type': html_tag

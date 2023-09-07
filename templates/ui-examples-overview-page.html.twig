@@ -11,6 +11,13 @@
     {% if example.description %}
       <p>{{ example.description }}</p>
     {% endif %}
+    {% if example.render_links %}
+      <ul>
+        {% for link in example.render_links %}
+          <li>{{ link }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
   {% endfor %}
 
 {% endif %}

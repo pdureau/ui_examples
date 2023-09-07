@@ -36,9 +36,16 @@ class ExamplesLibraryController extends ControllerBase {
    *   Examples overview page render array.
    */
   public function overview(): array {
+    $examples = [];
+    foreach ($this->examplesManager->getDefinitions() as $definition) {
+      $examples[$definition->id()] = $definition->toArray() + [
+        'definition' => $definition->toArray(),
+      ];
+    }
+
     return [
       '#theme' => 'ui_examples_overview_page',
-      '#examples' => $this->examplesManager->getDefinitions(),
+      '#examples' => $examples,
     ];
   }
 

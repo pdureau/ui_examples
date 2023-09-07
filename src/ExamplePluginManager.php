@@ -12,6 +12,7 @@ use Drupal\Core\Plugin\DefaultPluginManager;
 use Drupal\Core\Plugin\Discovery\ContainerDerivativeDiscoveryDecorator;
 use Drupal\Core\Plugin\Discovery\YamlDirectoryDiscovery;
 use Drupal\Core\Plugin\Discovery\YamlDiscoveryDecorator;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\ui_examples\Definition\ExampleDefinition;
 
 /**
@@ -122,6 +123,16 @@ class ExamplePluginManager extends DefaultPluginManager implements ExamplePlugin
     }
 
     $definition = new ExampleDefinition($definition);
+
+    // Makes links titles translatable.
+    $links = \array_map(static function ($link) {
+      if (\is_array($link) && !$link['title'] instanceof TranslatableMarkup) {
+        // phpcs:ignore Drupal.Semantics.FunctionT.NotLiteralString
+        $link['title'] = new TranslatableMarkup($link['title'], [], ['context' => 'ui_styles']);
+      }
+      return $link;
+    }, $definition->getLinks());
+    $definition->setLinks($links);
   }
 
   /**

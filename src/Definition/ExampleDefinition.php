@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\ui_examples\Definition;
 
 use Drupal\Component\Plugin\Definition\PluginDefinition;
+use Drupal\Core\Url;
 
 /**
  * Example definition class.
@@ -21,6 +22,7 @@ class ExampleDefinition extends PluginDefinition {
     'enabled' => TRUE,
     'label' => '',
     'description' => '',
+    'links' => [],
     'render' => '',
     'weight' => 0,
     'additional' => [],
@@ -192,13 +194,98 @@ class ExampleDefinition extends PluginDefinition {
   }
 
   /**
+   * Getter.
+   *
+   * @return array
+   *   The link.
+   */
+  public function getLinks(): array {
+    $links = [];
+
+    foreach ($this->definition['links'] as $link) {
+      if (!\is_array($link)) {
+        $link = [
+          'url' => $link,
+        ];
+      }
+
+      $link += [
+        'title' => 'External documentation',
+      ];
+
+      $links[] = $link;
+    }
+
+    return $links;
+  }
+
+  /**
+   * Construct render links.
+   *
+   * @return array
+   *   Render links.
+   */
+  public function getRenderLinks(): array {
+    $renderLinks = [];
+    foreach ($this->getLinks() as $link) {
+      $renderLinks[] = $this->renderLink($link);
+    }
+    return $renderLinks;
+  }
+
+  /**
+   * Setter.
+   *
+   * @param array $links
+   *   Property value.
+   *
+   * @return $this
+   */
+  public function setLinks(array $links) {
+    $this->definition['links'] = $links;
+    return $this;
+  }
+
+  /**
    * Return array definition.
    *
    * @return array
    *   Array definition.
    */
   public function toArray(): array {
-    return $this->definition;
+    $definition = $this->definition;
+    $definition['render_links'] = $this->getRenderLinks();
+    return $definition;
+  }
+
+  /**
+   * Render link.
+   *
+   * @param array $link
+   *   A link from getLinks method.
+   *
+   * @return array
+   *   The link render element.
+   */
+  protected function renderLink(array $link): array {
+    $renderLink = [
+      '#type' => 'link',
+      '#title' => $link['title'],
+    ];
+
+    if (!empty($link['url'])) {
+      $renderLink['#url'] = Url::fromUri($link['url']);
+    }
+
+    if (!empty($link['options'])) {
+      $renderLink['#options'] = $link['options'];
+    }
+
+    if (!empty($link['attributes'])) {
+      $renderLink['#attributes'] = $link['attributes'];
+    }
+
+    return $renderLink;
   }
 
 }
