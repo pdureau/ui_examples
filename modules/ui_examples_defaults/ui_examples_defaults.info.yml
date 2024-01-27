@@ -1,7 +1,7 @@
 name: 'UI Examples Defaults'
 type: module
 description: 'Provide some defaults examples for standard Drupal elements.'
-core_version_requirement: ^8.8 || ^9 || ^10
+core_version_requirement: ^10
 package: 'User interface'
 dependencies:
   - ui_examples:ui_examples

@@ -1,7 +1,5 @@
 # UI Examples
 
-## Introduction
-
 This module allows developers to provide example pages from modules or themes by
 defining render arrays in a YAML files.
 
@@ -18,10 +16,10 @@ album:
 ```
 
 Where:
-* `album` is the plugin ID. The page path is built from the plugin ID.
-* `label` is used in the library.
-* `description` is used in the library.
-* `render` is the render array to render on the example page.
+- `album` is the plugin ID. The page path is built from the plugin ID.
+- `label` is used in the library.
+- `description` is used in the library.
+- `render` is the render array to render on the example page.
 
 You can disable a plugin by declaring a plugin with the same ID and if your
 module has a higher weight than the module declaring the plugin, example:
@@ -33,31 +31,29 @@ album:
 
 See the test modules for a complete example.
 
-## Recommended Modules
 
-[UI Suite Bootstrap](https://github.com/pdureau/ui_suite_bootstrap) is an
-example of a site-building friendly Drupal theme using
-[UI Examples](https://www.drupal.org/project/ui_examples) with
-[UI Patterns](https://www.drupal.org/project/ui_patterns),
-[Layout Options](https://www.drupal.org/project/layout_options) and
-[UI Styles](https://www.drupal.org/project/ui_styles) modules, to implements
-[Bootstrap](https://getbootstrap.com/) 4:
+## Requirements
 
-![Overview](doc/schema.png)
+This module requires no modules outside of Drupal core.
+
 
 ## Installation
 
-Install and enable this module like any other Drupal module.
+Install as you would normally install a contributed Drupal module. For further
+information, see
+[Installing Drupal Modules](https://www.drupal.org/docs/extending-drupal/installing-drupal-modules).
+
 
 ## Configuration
 
-The module has no modifiable settings.
+The module has no modifiable settings. There is no configuration.
+
 
 ## Maintainers
 
 Current maintainers:
-* [Pierre Dureau (pdureau)](https://www.drupal.org/user/1903334)
-* [Florent Torregrosa (Grimreaper)](https://www.drupal.org/user/2388214)
+- Florent Torregrosa - [Grimreaper](https://www.drupal.org/user/2388214)
+- Pierre Dureau - [pdureau](https://www.drupal.org/user/1903334)
 
-This project has been sponsored by:
-* [Smile](https://https://www.smile.eu)
+Supporting organizations:
+- [Smile](https://www.drupal.org/smile)

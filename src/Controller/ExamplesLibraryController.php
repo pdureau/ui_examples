@@ -73,7 +73,7 @@ class ExamplesLibraryController extends ControllerBase {
    * @return \Drupal\Core\StringTranslation\TranslatableMarkup|string
    *   Example title.
    */
-  public function title(string $name): TranslatableMarkup|string {
+  public function title(string $name): string|TranslatableMarkup {
     /** @var \Drupal\ui_examples\Definition\ExampleDefinition $example */
     $example = $this->examplesManager->getDefinition($name);
     return $example->getLabel();

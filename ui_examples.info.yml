@@ -1,5 +1,5 @@
 name: 'UI Examples'
 type: module
 description: 'Define example pages from modules and themes.'
-core_version_requirement: ^8.8 || ^9 || ^10
+core_version_requirement: ^10
 package: 'User interface'
