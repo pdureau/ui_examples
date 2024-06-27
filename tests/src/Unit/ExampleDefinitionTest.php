@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\Tests\ui_examples\Unit;
 
@@ -47,7 +47,7 @@ class ExampleDefinitionTest extends UnitTestCase {
    * @return array
    *   Data.
    */
-  public function definitionGettersProvider(): array {
+  public static function definitionGettersProvider(): array {
     return [
       ['getProvider', 'provider', 'my_module'],
       ['id', 'id', 'plugin_id'],
@@ -85,7 +85,7 @@ class ExampleDefinitionTest extends UnitTestCase {
    * @return array
    *   Data.
    */
-  public function definitionGetLinksProvider(): array {
+  public static function definitionGetLinksProvider(): array {
     return [
       [
         [
@@ -134,7 +134,7 @@ class ExampleDefinitionTest extends UnitTestCase {
    * @return array
    *   Data.
    */
-  public function definitionGetRenderLinksProvider(): array {
+  public static function definitionGetRenderLinksProvider(): array {
     return [
       [
         [

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\ui_examples;
 
@@ -60,7 +60,7 @@ class ExamplePluginManager extends DefaultPluginManager implements ExamplePlugin
   public function __construct(
     CacheBackendInterface $cache_backend,
     ModuleHandlerInterface $module_handler,
-    ThemeHandlerInterface $theme_handler
+    ThemeHandlerInterface $theme_handler,
   ) {
     $this->setCacheBackend($cache_backend, 'ui_examples', ['ui_examples']);
     $this->alterInfo('ui_examples_examples');

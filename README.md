@@ -47,13 +47,3 @@ information, see
 ## Configuration
 
 The module has no modifiable settings. There is no configuration.
-
-
-## Maintainers
-
-Current maintainers:
-- Florent Torregrosa - [Grimreaper](https://www.drupal.org/user/2388214)
-- Pierre Dureau - [pdureau](https://www.drupal.org/user/1903334)
-
-Supporting organizations:
-- [Smile](https://www.drupal.org/smile)
